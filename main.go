@@ -58,6 +58,11 @@ func main() {
 		return
 	}
 
+	// basically this tool extracts information
+	// from http response headers property, to be exact: "Server"
+	// which you can see in your browser
+	// (1) open Dev Tool -> (2) Network -> (3) *select any request*
+	// -> (4) response headers -> (5) find "Server"
 	serv := resp.Header.Get("Server")
 	if serv == "" {
 		printErr(fmt.Sprintf("webserver not detected on %s", *url))
