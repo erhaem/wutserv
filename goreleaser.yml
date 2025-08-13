@@ -39,4 +39,4 @@ changelog:
 release:
   github:
     owner: erhaem
-    name: https://github.com/erhaem/wutserv
+    name: wutserv
