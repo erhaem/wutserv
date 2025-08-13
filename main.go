@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-const version string = "1.0.0"
+var version = "dev"
 
 // colors
 var (
