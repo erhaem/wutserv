@@ -4,15 +4,16 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
+
+	"github.com/fatih/color"
 )
 
 var version = "dev"
 
 // colors
 var (
-	red   = "\033[31m"
-	green = "\033[32m"
-	reset = "\033[0m"
+	red   = color.New(color.FgRed).SprintFunc()
+	green = color.New(color.FgGreen).SprintFunc()
 )
 
 func showBanner() {
@@ -30,11 +31,11 @@ func showBanner() {
 }
 
 func printErr(msg string) {
-	fmt.Println(red + "[err] " + msg + reset)
+	fmt.Println(red("[err] " + msg))
 }
 
 func printOk(msg string) {
-	fmt.Println(green + "[ok] " + msg + reset)
+	fmt.Println(green("[ok] " + msg))
 }
 
 func main() {
