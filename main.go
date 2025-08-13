@@ -51,7 +51,7 @@ func main() {
 		return
 	}
 
-	fmt.Println(fmt.Sprintf("[inf] url: %s, checking webserver..", *url))
+	fmt.Printf("[inf] url: %s, checking webserver..\n", *url)
 	resp, err := http.Head(*url)
 	if err != nil {
 		printErr(err.Error())
