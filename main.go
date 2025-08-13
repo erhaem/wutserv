@@ -4,8 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
-    "strings"
-    
+	"strings"
+
 	"github.com/fatih/color"
 )
 
@@ -64,8 +64,8 @@ func main() {
 		return
 	}
 	if strings.Contains(strings.ToLower(serv), "cloudflare") {
-	    printErr(fmt.Sprintf("no actual webserver detected on %s, the website is behind cloudflare", *url))
-	    return
+		printErr(fmt.Sprintf("no actual webserver detected on %s, the website is behind cloudflare", *url))
+		return
 	}
 
 	printOk(fmt.Sprintf("%s is using %s", *url, serv))
