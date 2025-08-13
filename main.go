@@ -1,0 +1,66 @@
+package main
+
+import (
+"fmt"
+"net/http"
+"flag"
+)
+
+const version string = "1.0.0"
+
+// colors
+var (
+red = "\033[31m"
+green = "\033[32m"
+reset = "\033[0m"
+)
+
+func showBanner() {
+fmt.Printf(`
+                 _                       
+                | |                      
+ __      ___   _| |_ ___  ___ _ ____   __
+ \ \ /\ / / | | | __/ __|/ _ \ '__\ \ / /
+  \ V  V /| |_| | |_\__ \  __/ |   \ V / 
+   \_/\_/  \__,_|\__|___/\___|_|    \_/ v%s
+
+   https://github.com/erhaem/wutserv
+
+`, version)
+}
+
+func printErr(msg string) {
+fmt.Println(red + "[err] " + msg + reset)
+}
+
+func printOk(msg string) {
+fmt.Println(green + "[ok] " +  msg + reset)
+}
+
+func main() {
+showBanner()
+
+url := flag.String("url", "", "url target")
+flag.Parse()
+
+if *url == "" {
+printErr("url is not defined -___-")
+printErr("usage: wutserv --url https://the-url-here.com")
+return
+}
+
+fmt.Println(fmt.Sprintf("[inf] url: %s, checking webserver..", *url))
+resp, err := http.Head(*url)
+if err != nil {
+printErr(err.Error())
+return
+}
+
+serv := resp.Header.Get("Server")
+if serv == "" {
+printErr(fmt.Sprintf("webserver not detected on %s", *url))
+return
+}
+
+printOk(fmt.Sprintf("%s is using %s", *url, serv))
+}
